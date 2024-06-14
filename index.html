@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    
+    <!-- Google Fonts - Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+        }
+        .countdown {
+            font-family: 'Kanit', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #34495e;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .countdown div {
+            font-size: 2em;
+            margin: 0 10px;
+            text-align: center;
+        }
+        .countdown span {
+            display: block;
+            font-size: 0.5em;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <div id="days"></div>
+        <div id="hours"></div>
+        <div id="minutes"></div>
+        <div id="seconds"></div>
+        <div id="milliseconds"></div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2024-10-25T00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeDifference = targetDate - now;
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            const milliseconds = timeDifference % 1000;
+
+            document.getElementById('days').innerHTML = days + " <span>Days</span>";
+            document.getElementById('hours').innerHTML = hours + " <span>Hours</span>";
+            document.getElementById('minutes').innerHTML = minutes + " <span>Minutes</span>";
+            document.getElementById('seconds').innerHTML = seconds + " <span>Seconds</span>";
+            document.getElementById('milliseconds').innerHTML = milliseconds + " <span>Milliseconds</span>";
+        }
+
+        setInterval(updateCountdown, 1);
+        updateCountdown();
+    </script>
+</body>
+</html>
